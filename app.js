@@ -1,3 +1,5 @@
+const BASE_URL = "https://trualinka.github.io/random-bingo/";
+
 const texts = {
   'ru': {
     mainTitle: "Ввод слов для игры",
@@ -169,7 +171,7 @@ function showRandomWord() {
   });
 }
 
-// --- Кнопка "Скопировать iframe" на стартовой (пусть останется для удобства)
+// --- Кнопка "Скопировать iframe" на стартовой
 document.getElementById('copyIframeBtn').onclick = function() {
   const wordsRaw = document.getElementById('wordsInput').value
     .split('\n').map(w => w.trim()).filter(w => w);
@@ -178,7 +180,7 @@ document.getElementById('copyIframeBtn').onclick = function() {
     return;
   }
   const wParam = encodeURIComponent(wordsRaw.join('\n'));
-  const url = `https://trualinka.github.io/bingo-editor/?w=${wParam}`;
+  const url = `${BASE_URL}?w=${wParam}`;
   const code = `<iframe src="${url}" width="100%" height="650" style="border:none;border-radius:20px;" allowfullscreen loading="lazy"></iframe>`;
   const result = document.getElementById('iframeResult');
   result.value = code;
@@ -189,7 +191,6 @@ document.getElementById('copyIframeBtn').onclick = function() {
   result.style.background = '#d4ffe4';
   result.style.transition = 'background 0.6s';
 
-  // Показать надпись "Скопировано!"
   document.getElementById('copiedMsg').style.display = '';
   setTimeout(()=>{
     document.getElementById('copiedMsg').style.display='none';
@@ -206,22 +207,21 @@ document.getElementById('openWordsBtn').onclick = function() {
     return;
   }
   const wParam = encodeURIComponent(wordsRaw.join('\n'));
-  const url = `https://trualinka.github.io/bingo-editor/?w=${wParam}`;
+  const url = `${BASE_URL}?w=${wParam}`;
   window.open(url, '_blank');
 };
 
 document.getElementById('iframeResult').style.display = 'none';
 
-// --- КНОПКА "Скопировать iFrame" НА ИГРОВОЙ СТРАНИЦЕ (второй экран)
+// --- КНОПКА "Скопировать iFrame" НА ИГРОВОЙ СТРАНИЦЕ
 document.getElementById('copyIframeGameBtn').onclick = function() {
-  // Используем тот набор, с которым запущена игра:
   const wordsToUse = originalWords.length ? originalWords : allWords;
   if (!wordsToUse.length) {
     alert('Нечего копировать!');
     return;
   }
   const wParam = encodeURIComponent(wordsToUse.join('\n'));
-  const src = `https://trualinka.github.io/bingo-editor/?w=${wParam}`;
+  const src = `${BASE_URL}?w=${wParam}`;
   const code = `<iframe src="${src}" width="100%" height="650" style="border:none;border-radius:20px;" allowfullscreen loading="lazy"></iframe>`;
   const result = document.getElementById('iframeGameResult');
   result.value = code;
