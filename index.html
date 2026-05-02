@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Bingo Word Randomizer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="main">
+    <h1 id="title">Ввод слов для игры</h1>
+    <div style="margin-bottom:13px;">
+      <label for="langSelect">Язык:</label>
+      <select id="langSelect">
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+      </select>
+      <label for="themeSelect" style="margin-left: 20px;">Тема:</label>
+      <select id="themeSelect">
+        <option value="blue">Синяя</option>
+        <option value="dark">Темная</option>
+        <option value="pink">Розовая</option>
+        <option value="green">Зеленая</option>
+        <option value="yellow">Желтая</option>
+        <option value="orange">Оранжевая</option>
+        <option value="purple">Фиолетовая</option>
+      </select>
+      <label for="fontSelect" style="margin-left: 20px;">Шрифт:</label>
+      <select id="fontSelect">
+        <option value="Patrick Hand">Рукописный</option>
+        <option value="Comic Sans MS">Comic Sans</option>
+        <option value="Arial">Arial</option>
+        <option value="Verdana">Verdana</option>
+      </select>
+    </div>
+    <textarea id="wordsInput" rows="8" cols="40" placeholder="Введите слова, по одному на строке"></textarea>
+    <br>
+    <button id="startBtn">Начать игру</button>
+    <button id="copyIframeBtn" style="margin:14px 0 8px 0;">Скопировать iFrame для этого набора</button>
+    <span id="copiedMsg" style="display:none; color:#32b34b; margin-left:20px; font-size:1.13em;">Скопировано!</span>
+    <button id="openWordsBtn" style="margin-bottom:7px;">Открыть этот набор в новом окне</button>
+    <textarea id="iframeResult" style="width:99%;margin:6px 0 8px 0;display:none;font-size:1.02em;" rows="2" readonly onclick="this.select()"></textarea>
+  </div>
+  <div id="game" style="display:none;">
+    <h1 id="gameTitle">Случайное слово:</h1>
+    <div id="wordDisplay"></div>
+    <div class="controls">
+      <button id="nextWordBtn">Следующее слово</button>
+      <div class="double-buttons">
+        <button id="restartGameBtn">Рестарт (те же слова)</button>
+        <button id="backBtn">Назад к меню</button>
+      </div>
+    </div>
+    <button id="restartBtn" style="display:none;">Начать заново</button>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
