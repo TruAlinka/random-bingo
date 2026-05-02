@@ -85,7 +85,7 @@ textarea {
   background: #a9152e;
   transform: translateY(2px) scale(1.025);
 }
-#copyIframeBtn, #openWordsBtn {
+#copyIframeBtn, #openWordsBtn, #copyIframeGameBtn {
   padding: 10px 28px;
   font-size: 22px;
   border-radius: 32px;
@@ -105,13 +105,20 @@ textarea {
   background: #ffa86b;
   border-color: #db7200;
 }
-#copyIframeBtn:hover:enabled {
+#copyIframeGameBtn {
+  background: #5cc07e;
+  border-color: #206934;
+  margin-left: 0;
+  margin-right: 0;
+}
+#copyIframeBtn:hover:enabled,
+#copyIframeGameBtn:hover:enabled {
   background: #2386db;
 }
 #openWordsBtn:hover:enabled {
   background: #ec4;
 }
-#copiedMsg {
+#copiedMsg, #copiedGameMsg {
   display: none;
   color: #32b34b;
   margin-left: 20px;
