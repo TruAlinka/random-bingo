@@ -54,6 +54,12 @@
         <button id="backBtn">Назад к меню</button>
       </div>
     </div>
+    <!-- Новая секция для копирования iFrame прямо с игрового экрана -->
+    <div style="text-align:center; margin-top:20px;">
+      <button id="copyIframeGameBtn" style="margin:8px 0 5px 0;">Скопировать iFrame с этим набором</button>
+      <span id="copiedGameMsg" style="display:none; color:#32b34b; font-size:1.13em;">Скопировано!</span>
+      <textarea id="iframeGameResult" style="width:99%;margin:6px 0 8px 0;display:none;font-size:1.02em;" rows="2" readonly onclick="this.select()"></textarea>
+    </div>
     <button id="restartBtn" style="display:none;">Начать заново</button>
   </div>
   <script src="app.js"></script>
