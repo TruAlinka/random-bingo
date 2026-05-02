@@ -111,7 +111,6 @@ textarea {
 #openWordsBtn:hover:enabled {
   background: #ec4;
 }
-/* --- новый стиль для надписи "Скопировано!" */
 #copiedMsg {
   display: none;
   color: #32b34b;
