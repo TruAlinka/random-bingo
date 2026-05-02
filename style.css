@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+body.theme-blue { background: #184356; }
+.theme-blue #main, .theme-blue #game { background: #ffffff05; }
+body.theme-dark { background: #191c21; }
+.theme-dark #main, .theme-dark #game { background: #fff1; }
+body.theme-pink { background: #e04b82; }
+.theme-pink #main, .theme-pink #game { background: #ffe8f71a; }
+body.theme-green { background: #197c4a; }
+.theme-green #main, .theme-green #game { background: #fafff7; }
+body.theme-yellow { background: #f5e572; }
+.theme-yellow #main, .theme-yellow #game { background: #fefce48c; }
+body.theme-orange { background: #ff954a; }
+.theme-orange #main, .theme-orange #game { background: #fff4e1; }
+body.theme-purple { background: #7d54a7; }
+.theme-purple #main, .theme-purple #game { background: #f8f5ff; }
+
+body {
+  font-family: 'Patrick Hand', Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  transition: background 0.4s;
+  background-image:
+    url('https://cdn.pixabay.com/photo/2013/07/12/17/00/star-150837_1280.png'),
+    url('https://cdn.pixabay.com/photo/2013/07/12/17/00/star-150837_1280.png');
+  background-size: 100px, 60px;
+  background-repeat: no-repeat, no-repeat;
+  background-position: 10% 25%, 85% 78%;
+}
+
+#main, #game {
+  max-width: 900px;
+  width: 98vw;
+  margin: 60px auto 0 auto;
+  background: #ffffff05;
+  padding: 18px 12px 44px 12px;
+  border-radius: 20px;
+  box-shadow: 0 9px 48px #0001, 0 0 0 8px #fff1;
+  transition: background 0.4s;
+}
+
+h1, #gameTitle {
+  text-align: center;
+  font-size: 36px;
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 12px #001a;
+}
+
+label, select, textarea { font-family: inherit; font-size: 18px; border-radius: 6px; border: 1.7px solid #084b77; }
+textarea {
+  width: 380px;
+  min-width: 210px;
+  resize: vertical;
+  font-size: 16px;
+  padding: 8px;
+  margin-bottom: 18px;
+  background: #f6fcff;
+  border-radius: 9px;
+  border: 2.2px solid #ddeefe;
+  margin-top: 12px;
+  display: block;
+}
+
+/* === КРУПНАЯ КНОПКА СТАРТ === */
+#startBtn {
+  padding: 18px 48px;
+  font-size: 34px;
+  border-radius: 44px;
+  font-family: inherit;
+  font-weight: 500;
+  background: #e84141;
+  color: #fff;
+  border: 3px solid #b82d2d;
+  box-shadow: 0 4px 22px #d228284c, 0 1.4px 0 #fff;
+  cursor: pointer;
+  margin: 36px 0 22px 0;
+  letter-spacing: 1.4px;
+  text-shadow: 0 2px 8px #0002;
+  transition: background 0.16s, transform 0.14s;
+  display: block;
+}
+#startBtn:hover:enabled {
+  background: #a9152e;
+  transform: translateY(2px) scale(1.025);
+}
+#copyIframeBtn, #openWordsBtn {
+  padding: 10px 28px;
+  font-size: 22px;
+  border-radius: 32px;
+  font-family: inherit;
+  font-weight: 550;
+  background: #479eff;
+  color: #fff;
+  border: 2.2px solid #176daf;
+  box-shadow: 0 3px 14px #50d4fe2c;
+  letter-spacing: 0.8px;
+  margin-right: 7px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background 0.16s, transform 0.12s;
+}
+#openWordsBtn {
+  background: #ffa86b;
+  border-color: #db7200;
+}
+#copyIframeBtn:hover:enabled {
+  background: #2386db;
+}
+#openWordsBtn:hover:enabled {
+  background: #ec4;
+}
+/* --- новый стиль для надписи "Скопировано!" */
+#copiedMsg {
+  display: none;
+  color: #32b34b;
+  margin-left: 20px;
+  font-size: 1.13em;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+/* === Буквенные плашки (slots) === */
+#wordDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff15;
+  border-radius: 32px;
+  margin: 38px auto 10px auto;
+  padding: 32px 17px 34px 17px;
+  box-shadow: 0 2px 33px #0001, 0 0 0 8px #fff3 inset;
+  max-width: 85vw;
+  min-height: 115px;
+  font-family: var(--gameFont, 'Patrick Hand', Arial, sans-serif);
+}
+.slot {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-family: inherit;
+  font-size: 70px;
+  color: #222;
+  min-width: 75px;
+  min-height: 90px;
+  margin: 0 9px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #fff4e5 0%, #ffd3a2 100%);
+  box-shadow: 0 7px 40px #0002, 0 1.5px 0 #fff, 0 0 12px #abbedc2b inset;
+  border: 4px solid #bed0e6;
+  position: relative;
+  transition: background 0.15s;
+}
+.slot::before {
+  content: "";
+  position: absolute;
+  left: 13px; right: 13px; top: 11px; height: 23px;
+  background: linear-gradient(90deg, #fff9 55%, #fff1 95%);
+  opacity: 0.7;
+  border-radius: 13px 16px 17px 13px / 13px 19px 12px 15px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.controls { margin-top: 10px; }
+#nextWordBtn {
+  display: block; margin: 0 auto 22px auto;
+  background: #ffb26e; color: #fff; border-color: #ec8b39;
+  box-shadow: 0 3px 16px #fdccae5c;
+  font-size: 32px; width: 350px; max-width: 90vw;
+}
+.double-buttons { display: flex; justify-content: center; gap: 20px; }
+#restartGameBtn, #backBtn {
+  width: 200px; max-width: 40vw; font-size: 23px;
+  margin: 0; margin-bottom: 20px; padding: 13px 2px;
+  border-radius: 32px; box-shadow: 0 3px 15px #aaa3;
+  font-family: inherit;
+}
+#restartGameBtn {
+  background: #479eff; border-color: #155daf; color: #fff;
+}
+#restartGameBtn:hover:enabled { background: #226bdb; }
+#backBtn {
+  background: #bbbbbb; border-color: #888; color: #212121;
+}
+#backBtn:hover:enabled { background: #999999; }
+
+.finish-phrase {
+  display: flex; justify-content: center; align-items: center;
+  color: #ff8800; font-size: 2.2em; font-weight: bold;
+  margin: 40px 0 28px 0; gap: 10px; line-height: 1.2;
+  text-shadow: 0 3px 26px #fff7, 0 1px 0 #fff, 0 4px #ffcb8b55;
+}
+
+@media (max-width: 690px) {
+  #main, #game { margin-top: 24px; }
+  #nextWordBtn { width: 94vw; }
+  .double-buttons { gap: 9px; }
+  #restartGameBtn, #backBtn { width: 44vw; font-size: 16.5px;}
+  .finish-phrase { font-size: 1.22em; }
+}
