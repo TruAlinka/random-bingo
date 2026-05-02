@@ -57,7 +57,6 @@ let currentLang = 'ru';
 let currentWord = null;
 let animating = false;
 
-// --- !!! ВАЖНО: теперь если есть ?w=... сразу запускается игра! ---
 window.onload = function() {
   document.body.classList.add('theme-blue');
   document.documentElement.style.setProperty('--gameFont', `'Patrick Hand', Arial, sans-serif`);
@@ -98,6 +97,7 @@ function updateLangUI() {
   document.getElementById('backBtn').textContent = texts[currentLang].back;
   document.getElementById('restartBtn').textContent = texts[currentLang].restart;
   document.getElementById('copiedMsg').textContent = texts[currentLang].copied;
+  document.getElementById('copiedGameMsg').textContent = texts[currentLang].copied;
 }
 
 document.getElementById('langSelect').addEventListener('change', function() {
@@ -169,7 +169,7 @@ function showRandomWord() {
   });
 }
 
-// --- Кнопка "Скопировать iframe"
+// --- Кнопка "Скопировать iframe" на стартовой (пусть останется для удобства)
 document.getElementById('copyIframeBtn').onclick = function() {
   const wordsRaw = document.getElementById('wordsInput').value
     .split('\n').map(w => w.trim()).filter(w => w);
@@ -211,6 +211,33 @@ document.getElementById('openWordsBtn').onclick = function() {
 };
 
 document.getElementById('iframeResult').style.display = 'none';
+
+// --- КНОПКА "Скопировать iFrame" НА ИГРОВОЙ СТРАНИЦЕ (второй экран)
+document.getElementById('copyIframeGameBtn').onclick = function() {
+  // Используем тот набор, с которым запущена игра:
+  const wordsToUse = originalWords.length ? originalWords : allWords;
+  if (!wordsToUse.length) {
+    alert('Нечего копировать!');
+    return;
+  }
+  const wParam = encodeURIComponent(wordsToUse.join('\n'));
+  const src = `https://trualinka.github.io/bingo-editor/?w=${wParam}`;
+  const code = `<iframe src="${src}" width="100%" height="650" style="border:none;border-radius:20px;" allowfullscreen loading="lazy"></iframe>`;
+  const result = document.getElementById('iframeGameResult');
+  result.value = code;
+  result.style.display = '';
+  result.select();
+  try { document.execCommand('copy'); } catch(e){}
+  result.blur();
+  result.style.background = '#d4ffe4';
+  document.getElementById('copiedGameMsg').style.display = '';
+  setTimeout(()=>{
+    document.getElementById('copiedGameMsg').style.display='none';
+    result.style.background='';
+  },1200);
+};
+
+document.getElementById('iframeGameResult').style.display = 'none';
 
 document.getElementById('nextWordBtn').onclick = function() {
   if (animating) return;
