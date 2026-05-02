@@ -57,14 +57,22 @@ let currentLang = 'ru';
 let currentWord = null;
 let animating = false;
 
+// --- !!! ВАЖНО: теперь если есть ?w=... сразу запускается игра! ---
 window.onload = function() {
   document.body.classList.add('theme-blue');
   document.documentElement.style.setProperty('--gameFont', `'Patrick Hand', Arial, sans-serif`);
-  // Если открыли страницу с параметром ?w=..., сразу заполним словами
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.has('w')) {
     const w = urlParams.get('w');
     document.getElementById('wordsInput').value = decodeURIComponent(w);
+    allWords = decodeURIComponent(w).split('\n').map(w=>w.trim()).filter(w=>w);
+    originalWords = allWords.slice();
+    words = allWords.slice();
+    used = [];
+    document.getElementById('main').style.display = 'none';
+    document.getElementById('game').style.display = '';
+    document.getElementById('nextWordBtn').disabled = false;
+    showRandomWord();
   }
   updateLangUI();
 };
